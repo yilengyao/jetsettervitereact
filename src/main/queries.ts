@@ -6,21 +6,21 @@ const handleFetchItems = (db, ipcMain) => {
 }
 
 const handleAddItem = (db, ipcMain) => {
-    ipcMain.handle("database:add-item", async (event, item) => {
+    ipcMain.handle("database:add-item", async (item) => {
         const id = await db("items").insert(item);
         return { id, ...item };
     });
 }
 
 const handleDeleteItem = (db, ipcMain) => {
-    ipcMain.handle("database:delete-item", async (event, id) => {
+    ipcMain.handle("database:delete-item", async (id) => {
         await db("items").where({ id }).del();
         return true;
     });
 }
 
 const handleMarkAsPacked = (db, ipcMain) => {
-    ipcMain.handle("database:mark-as-packed", async (event, id) => {
+    ipcMain.handle("database:mark-as-packed", async (id) => {
         await db("items").where({ id }).update({ packed: true });
         return true;
     });

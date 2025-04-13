@@ -19,6 +19,7 @@ const database = (app: App): Knex => {
                 table.boolean('packed');
             });
         }
+        return Promise.resolve(); // Return a resolved promise when table exists
     });
     
     return db;
