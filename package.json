@@ -21,12 +21,12 @@
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build:linux": "npm run build && electron-builder --linux AppImage deb --x64",
+    "build:win-x64": "npm run build && electron-builder --win --x64"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
-    "better-sqlite3": "^11.9.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
@@ -38,6 +38,7 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "better-sqlite3": "^11.9.1",
     "electron": "^35.0.3",
     "electron-builder": "^25.1.8",
     "electron-vite": "^3.1.0",
