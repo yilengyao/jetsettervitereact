@@ -2,7 +2,28 @@ import { contextBridge } from 'electron';
 import { electronAPI } from '@electron-toolkit/preload';
 
 // Custom APIs for renderer
-const api = {};
+const api = {
+  database: {
+    fetchItems: () => {
+      return electronAPI.ipcRenderer.invoke('database:fetch-items');
+    },
+    addItem: (item) => {
+      return electronAPI.ipcRenderer.invoke('database:add-item', item);
+    },
+    deleteItem: (id) => {
+      return electronAPI.ipcRenderer.invoke('database:delete-item', id);
+    },
+    markAsPacked: (id) => {
+      return electronAPI.ipcRenderer.invoke('database:mark-as-packed', id);
+    },
+    markAllAsUnpacked: () => {
+      return electronAPI.ipcRenderer.invoke('database:mark-all-as-unpacked');
+    },
+    deleteUnpackedItems: () => {
+      return electronAPI.ipcRenderer.invoke('database:delete-unpacked-items');
+    }
+  }
+};
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
