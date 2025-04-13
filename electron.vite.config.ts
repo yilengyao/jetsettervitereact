@@ -6,6 +6,19 @@ import jadePlugin from './vite-jade-plugin';
 export default defineConfig({
   main: {
     plugins: [externalizeDepsPlugin()],
+    build: {
+      rollupOptions: {
+        external: [
+          'sqlite3',
+          'pg',
+          'pg-native',
+          'tedious',
+          'mysql',
+          'mysql2',
+          'oracledb'
+        ]
+      }
+    }
   },
   preload: {
     plugins: [externalizeDepsPlugin()],
